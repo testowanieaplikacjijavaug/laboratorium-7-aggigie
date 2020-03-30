@@ -28,23 +28,21 @@ public class NoteTest {
     @Test
     public void testNullAsAName(){
         assertThatThrownBy(() -> {
-            Note newNone = Note.of (null, 3);
+            Note newNone = Note.of (null, 3.0f);
         }).isInstanceOf(IllegalArgumentException.class).hasMessage("Imię ucznia nie może być null");
     }
 
     @Test
     public void testEmptyName(){
         assertThatThrownBy(() -> {
-            Note newNone = Note.of ("", 3);
+            Note newNone = Note.of ("", 2.0f);
         }).isInstanceOf(IllegalArgumentException.class).hasMessage("Imię ucznia nie może być puste");
     }
 
     @Test
     public void testUncommonName(){
-        assertThat(() -> {
-            Note newNone = Note.of ("Jaga2342", 3.5f);
-        }).isInstanceOf(IllegalArgumentException.class).hasMessage("Imię ucznia nie może być puste");
-    }
+        assertDoesNotThrow(Note newNone = Note.of ("Jaga2342", 3.5f)) ;
+        }
 
     @Test
     public void testNoteUnder(){
