@@ -4,3 +4,33 @@
  * This is a general purpose Gradle build.
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds
  */
+
+plugins {
+    // Apply the java-library plugin to add support for Java Library
+    id 'java-library'
+    id 'jacoco'
+}
+
+repositories {
+    // Use jcenter for resolving dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+    testCompile("org.assertj:assertj-core:3.11.1")
+    compile group: 'com.google.guava', name: 'guava', version: 'r05'
+}
+
+test {
+    useJUnitPlatform()
+}
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
